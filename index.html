@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -480,7 +481,6 @@
             transition: all var(--transition-bounce);
             border: 3px solid transparent;
             background: #f0dce0;
-            /* fallback bg */;
         }
         .gallery-item img {
             width: 100%;
@@ -1074,35 +1074,34 @@
         </section>
 
         <!-- ==================== MEMORY GALLERY SECTION ==================== -->
-     
         <section class="gallery-section fade-in-section" id="gallery">
             <div class="section-inner">
                 <h2 class="section-heading">Our Beautiful Memories 📸</h2>
                 <p class="section-subheading">Every picture tells our love story</p>
                 <div class="gold-divider"></div>
                 <div class="gallery-grid" id="gallery-grid">
-                    <!-- PHOTO 1 — Replace the src AND data-src below -->
-                    <div class="gallery-item" data-src="https://picsum.photos/seed/love1/600/750">
+                    <!-- PHOTO 1 -->
+                    <div class="gallery-item" data-src="img/photo_2026-05-18_19-45-13.jpg">
                         <img src="img/photo_2026-05-18_19-45-13.jpg" alt="Memory 1" loading="lazy">
                     </div>
-                    <!-- PHOTO 2 — Replace the src AND data-src below -->
-                    <div class="gallery-item" data-src="https://picsum.photos/seed/love2/600/750">
+                    <!-- PHOTO 2 -->
+                    <div class="gallery-item" data-src="img/photo_2026-05-18_19-45-15.jpg">
                         <img src="img/photo_2026-05-18_19-45-15.jpg" alt="Memory 2" loading="lazy">
                     </div>
-                    <!-- PHOTO 3 — Replace the src AND data-src below -->
-                    <div class="gallery-item" data-src="https://picsum.photos/seed/love3/600/750">
+                    <!-- PHOTO 3 -->
+                    <div class="gallery-item" data-src="img/photo_2026-05-18_19-45-20.jpg">
                         <img src="img/photo_2026-05-18_19-45-20.jpg" alt="Memory 3" loading="lazy">
                     </div>
-                    <!-- PHOTO 4 — Replace the src AND data-src below -->
-                    <div class="gallery-item" data-src="https://picsum.photos/seed/love4/600/750">
+                    <!-- PHOTO 4 -->
+                    <div class="gallery-item" data-src="img/photo_2026-05-18_19-45-21.jpg">
                         <img src="img/photo_2026-05-18_19-45-21.jpg" alt="Memory 4" loading="lazy">
                     </div>
-                    <!-- PHOTO 5 — Replace the src AND data-src below -->
-                    <div class="gallery-item" data-src="https://picsum.photos/seed/love5/600/750">
+                    <!-- PHOTO 5 -->
+                    <div class="gallery-item" data-src="img/photo_2026-05-18_19-45-31.jpg">
                         <img src="img/photo_2026-05-18_19-45-31.jpg" alt="Memory 5" loading="lazy">
                     </div>
-                    <!-- PHOTO 6 — Replace the src AND data-src below -->
-                    <div class="gallery-item" data-src="https://picsum.photos/seed/love6/600/750">
+                    <!-- PHOTO 6 -->
+                    <div class="gallery-item" data-src="img/photo_2026-05-18_19-45-29.jpg">
                         <img src="img/photo_2026-05-18_19-45-29.jpg" alt="Memory 6" loading="lazy">
                     </div>
                 </div>
@@ -1281,34 +1280,22 @@
     <script>
         (function() {
             // ==========================================
-            // CONFIGURATION — EDIT THESE VALUES
+            // CONFIGURATION — Your real relationship start date
             // ==========================================
+            // Set the exact day your journey began (YYYY-MM-DD)
+            const RELATIONSHIP_START_DATE = "2024-11-29";
 
-            // Relationship start date (for the "time together" counter)
-            // Format: "YYYY-MM-DD" — Change this to your actual anniversary date
-            const RELATIONSHIP_START_DATE = "2023-06-15";
-
-            // Her name & your name (used throughout the site)
+            // Your names
             const HER_NAME = "Redu";
             const YOUR_NAME = "Eyob";
 
             // ==========================================
             // 🎵 YOUTUBE MUSIC CONFIGURATION
             // ==========================================
-            // Your YouTube video URL:
-            // https://www.youtube.com/watch?v=fcWQqPGlaTU&list=RDfcWQqPGlaTU&start_radio=1
-            //
-            // The video ID is: fcWQqPGlaTU
-            // The radio playlist ID is: RDfcWQqPGlaTU
-            //
-            // To change the song, simply replace the YOUTUBE_VIDEO_ID below
-            // with a different YouTube video ID.
-            // Example: If your URL is https://www.youtube.com/watch?v=ABC123xyz
-            //          then the video ID is: ABC123xyz
-            const YOUTUBE_VIDEO_ID = "fcWQqPGlaTU";
-            const YOUTUBE_PLAYLIST_ID = "RDfcWQqPGlaTU"; // Radio playlist for continuous music
+            const YOUTUBE_VIDEO_ID = "1RQxncw1Yfc";      // Your chosen song
+            const YOUTUBE_PLAYLIST_ID = "RD1RQxncw1Yfc"; // Radio playlist for continuous music
 
-            // Typing speed (milliseconds per character) — lower = faster
+            // Typing speed (milliseconds per character)
             const TYPING_SPEED_MS = 45;
 
             // The love message that will be typed out
@@ -1337,12 +1324,9 @@
             // ==========================================
             // YOUTUBE IFrame API
             // ==========================================
-            // This function is called automatically by the YouTube API when it loads
             window.onYouTubeIframeAPIReady = function() {
                 ytApiReady = true;
                 createYouTubePlayer();
-
-                // If a play request was made before the API was ready, honor it now
                 if (pendingPlayRequest) {
                     pendingPlayRequest = false;
                     playYouTubeMusic();
@@ -1350,13 +1334,9 @@
             };
 
             function createYouTubePlayer() {
-                if (youtubePlayer) return; // Already created
-
+                if (youtubePlayer) return;
                 const container = document.getElementById('youtube-player-container');
-                // Clear any existing content
                 container.innerHTML = '';
-
-                // Create a div for the YT player
                 const playerDiv = document.createElement('div');
                 playerDiv.id = 'yt-player-inner';
                 container.appendChild(playerDiv);
@@ -1365,14 +1345,11 @@
                     youtubePlayer = new YT.Player('yt-player-inner', {
                         videoId: YOUTUBE_VIDEO_ID,
                         playerVars: {
-                            autoplay: 1, // Try to autoplay on load
-                            controls: 0, // Hide controls
+                            autoplay: 1,
+                            controls: 0,
                             modestbranding: 1,
                             loop: 1,
-                            playlist: YOUTUBE_VIDEO_ID, // Loop the single video
-                            // Use the radio playlist for variety (comment out playlist above if using this):
-                            // list: YOUTUBE_PLAYLIST_ID,
-                            // listType: 'playlist',
+                            playlist: YOUTUBE_VIDEO_ID,
                             rel: 0,
                             showinfo: 0,
                             fs: 0,
@@ -1382,26 +1359,20 @@
                         },
                         events: {
                             onReady: function(event) {
-                                console.log('✅ YouTube player is ready!');
-                                // Attempt autoplay
+                                console.log('✅ YouTube player ready');
                                 try {
                                     event.target.playVideo();
-                                    // Check if it actually started (may be blocked by browser)
                                     setTimeout(() => {
                                         const state = event.target.getPlayerState();
                                         if (state === YT.PlayerState.PLAYING ||
                                             state === YT.PlayerState.BUFFERING) {
                                             setMusicPlayingState(true);
-                                            console.log('🎶 Music auto-playing!');
                                         } else {
-                                            // Autoplay was likely blocked
-                                            console.log('⚠️ Autoplay blocked by browser — waiting for user click');
                                             setMusicPlayingState(false);
                                             updateMusicButtonUI(false);
                                         }
                                     }, 1500);
                                 } catch (e) {
-                                    console.log('⚠️ Could not autoplay:', e.message);
                                     setMusicPlayingState(false);
                                     updateMusicButtonUI(false);
                                 }
@@ -1411,27 +1382,17 @@
                                     event.data === YT.PlayerState.BUFFERING) {
                                     setMusicPlayingState(true);
                                     updateMusicButtonUI(true);
-                                } else if (event.data === YT.PlayerState.PAUSED ||
-                                    event.data === YT.PlayerState.ENDED ||
-                                    event.data === YT.PlayerState.UNSTARTED) {
-                                    // Only update if we're not in a buffering transition
-                                    if (event.data === YT.PlayerState.PAUSED) {
-                                        setMusicPlayingState(false);
-                                        updateMusicButtonUI(false);
-                                    }
+                                } else if (event.data === YT.PlayerState.PAUSED) {
+                                    setMusicPlayingState(false);
+                                    updateMusicButtonUI(false);
                                 }
                             },
                             onError: function(event) {
-                                console.log('⚠️ YouTube player error:', event.data);
                                 setMusicPlayingState(false);
                                 updateMusicButtonUI(false);
-                                document.getElementById('music-label').textContent =
-                                    'Error — Try Again';
+                                document.getElementById('music-label').textContent = 'Error — Try Again';
                                 setTimeout(() => {
-                                    if (!isMusicPlaying) {
-                                        document.getElementById('music-label').textContent =
-                                            'Play Music';
-                                    }
+                                    if (!isMusicPlaying) document.getElementById('music-label').textContent = 'Play Music';
                                 }, 3000);
                             }
                         }
@@ -1443,26 +1404,18 @@
 
             function playYouTubeMusic() {
                 if (!ytApiReady) {
-                    // API not loaded yet — queue the request
                     pendingPlayRequest = true;
-                    // Try loading the API if it hasn't been loaded
-                    if (!document.querySelector('script[src*="iframe_api"]')) {
-                        loadYouTubeAPI();
-                    }
+                    if (!document.querySelector('script[src*="iframe_api"]')) loadYouTubeAPI();
                     return;
                 }
-
                 if (!youtubePlayer) {
                     createYouTubePlayer();
-                    // The onReady callback will handle playing
                     return;
                 }
-
                 try {
                     youtubePlayer.playVideo();
                     setMusicPlayingState(true);
                     updateMusicButtonUI(true);
-                    console.log('🎶 Music started!');
                 } catch (e) {
                     console.log('⚠️ Error playing music:', e.message);
                 }
@@ -1488,7 +1441,6 @@
                 const musicBtn = document.getElementById('music-btn');
                 const musicLabel = document.getElementById('music-label');
                 const musicPlayer = document.getElementById('music-player');
-
                 if (playing) {
                     musicBtn.textContent = '⏸';
                     musicLabel.textContent = 'Playing...';
@@ -1501,18 +1453,15 @@
             }
 
             function loadYouTubeAPI() {
-                // Check if already loaded or loading
                 if (document.querySelector('script[src*="iframe_api"]')) return;
                 if (window.YT && window.YT.Player) {
                     ytApiReady = true;
                     return;
                 }
-
                 const tag = document.createElement('script');
                 tag.src = 'https://www.youtube.com/iframe_api';
                 const firstScriptTag = document.getElementsByTagName('script')[0];
                 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-                console.log('📥 Loading YouTube IFrame API...');
             }
 
             // ==========================================
@@ -1529,18 +1478,11 @@
                 heart.style.fontSize = (Math.random() * 24 + 12) + 'px';
                 const duration = Math.random() * 10 + 8;
                 heart.style.animationDuration = duration + 's';
-                if (Math.random() > 0.5) {
-                    heart.style.animationName = 'floatUp';
-                } else {
-                    heart.style.animationName = 'floatUpAlt';
-                }
+                heart.style.animationName = Math.random() > 0.5 ? 'floatUp' : 'floatUpAlt';
                 heart.style.animationDelay = '0s';
                 heartsContainer.appendChild(heart);
-
                 setTimeout(() => {
-                    if (heart.parentNode) {
-                        heart.remove();
-                    }
+                    if (heart.parentNode) heart.remove();
                 }, duration * 1000 + 500);
             }
 
@@ -1549,9 +1491,7 @@
                     setTimeout(() => createFloatingHeart(), i * 300);
                 }
                 setInterval(() => {
-                    if (heartsContainer.children.length < 40) {
-                        createFloatingHeart();
-                    }
+                    if (heartsContainer.children.length < 40) createFloatingHeart();
                 }, 1200);
             }
 
@@ -1560,12 +1500,10 @@
             // ==========================================
             const sparkleEmojis = ['✦', '✧', '⋆', '·', '♥', '✨'];
             let lastSparkleTime = 0;
-
             document.addEventListener('mousemove', function(e) {
                 const now = Date.now();
                 if (now - lastSparkleTime < 55) return;
                 lastSparkleTime = now;
-
                 const sparkle = document.createElement('span');
                 sparkle.className = 'cursor-sparkle';
                 sparkle.textContent = sparkleEmojis[Math.floor(Math.random() * sparkleEmojis.length)];
@@ -1576,10 +1514,7 @@
                 sparkle.style.setProperty('--drift-y', (Math.random() * 40 - 20) + 'px');
                 sparkle.style.color = Math.random() > 0.6 ? '#c9a96e' : '#e8879b';
                 document.body.appendChild(sparkle);
-
-                setTimeout(() => {
-                    if (sparkle.parentNode) sparkle.remove();
-                }, 950);
+                setTimeout(() => { if (sparkle.parentNode) sparkle.remove(); }, 950);
             });
 
             // ==========================================
@@ -1587,9 +1522,7 @@
             // ==========================================
             window.scrollToSection = function(sectionId) {
                 const section = document.getElementById(sectionId);
-                if (section) {
-                    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
+                if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
             };
 
             // ==========================================
@@ -1626,32 +1559,49 @@
             }
 
             // ==========================================
-            // COUNTDOWN TIMER (Time Together)
+            // COUNTDOWN TIMER (Time Together) — ACCURATE CALENDAR MATH
             // ==========================================
             function updateCountdown() {
                 const startDate = new Date(RELATIONSHIP_START_DATE);
                 const now = new Date();
-                let diffMs = now - startDate;
 
-                if (diffMs < 0) diffMs = 0;
+                if (now < startDate) {
+                    document.getElementById('cd-years').textContent = '0';
+                    document.getElementById('cd-months').textContent = '0';
+                    document.getElementById('cd-days').textContent = '0';
+                    document.getElementById('cd-hours').textContent = '0';
+                    document.getElementById('cd-minutes').textContent = '0';
+                    document.getElementById('cd-seconds').textContent = '0';
+                    return;
+                }
 
-                const secondsTotal = Math.floor(diffMs / 1000);
-                const minutesTotal = Math.floor(secondsTotal / 60);
-                const hoursTotal = Math.floor(minutesTotal / 60);
-                const daysTotal = Math.floor(hoursTotal / 24);
+                let years = now.getFullYear() - startDate.getFullYear();
+                let months = now.getMonth() - startDate.getMonth();
+                let days = now.getDate() - startDate.getDate();
+                let hours = now.getHours() - startDate.getHours();
+                let minutes = now.getMinutes() - startDate.getMinutes();
+                let seconds = now.getSeconds() - startDate.getSeconds();
 
-                const years = Math.floor(daysTotal / 365.25);
-                const remainingDaysAfterYears = daysTotal - Math.floor(years * 365.25);
-                const months = Math.floor(remainingDaysAfterYears / 30.44);
-                const remainingDays = Math.floor(remainingDaysAfterYears - months * 30.44);
+                if (seconds < 0) { seconds += 60; minutes--; }
+                if (minutes < 0) { minutes += 60; hours--; }
+                if (hours < 0) { hours += 24; days--; }
+                if (days < 0) {
+                    const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+                    days += prevMonth.getDate();
+                    months--;
+                }
+                if (months < 0) { months += 12; years--; }
 
-                const hours = hoursTotal % 24;
-                const minutes = minutesTotal % 60;
-                const seconds = secondsTotal % 60;
+                years = Math.max(0, years);
+                months = Math.max(0, months);
+                days = Math.max(0, days);
+                hours = Math.max(0, hours);
+                minutes = Math.max(0, minutes);
+                seconds = Math.max(0, seconds);
 
                 document.getElementById('cd-years').textContent = years;
                 document.getElementById('cd-months').textContent = months;
-                document.getElementById('cd-days').textContent = remainingDays;
+                document.getElementById('cd-days').textContent = days;
                 document.getElementById('cd-hours').textContent = hours;
                 document.getElementById('cd-minutes').textContent = minutes;
                 document.getElementById('cd-seconds').textContent = seconds;
@@ -1666,14 +1616,15 @@
             updateCountdown();
 
             // ==========================================
-            // LIGHTBOX FUNCTIONALITY
+            // LIGHTBOX — SHOWS HER REAL PHOTO
             // ==========================================
             const lightboxOverlay = document.getElementById('lightbox-overlay');
             const lightboxImg = document.getElementById('lightbox-img');
 
             document.querySelectorAll('.gallery-item').forEach(item => {
                 item.addEventListener('click', function(e) {
-                    const src = this.getAttribute('data-src');
+                    const img = this.querySelector('img');
+                    const src = img ? img.src : this.getAttribute('data-src');
                     lightboxImg.src = src;
                     lightboxOverlay.classList.add('active');
                     document.body.style.overflow = 'hidden';
@@ -1706,7 +1657,6 @@
             // ==========================================
             window.toggleMusic = function(event) {
                 if (event) event.stopPropagation();
-
                 if (isMusicPlaying) {
                     pauseYouTubeMusic();
                 } else {
@@ -1716,38 +1666,25 @@
 
             // ==========================================
             // FIRST CLICK ANYWHERE — Trigger Music
-            // (This helps bypass browser autoplay restrictions)
             // ==========================================
             let firstClickHandlerAdded = false;
-
             function addFirstClickMusicTrigger() {
                 if (firstClickHandlerAdded) return;
                 firstClickHandlerAdded = true;
 
                 document.addEventListener('click', function tryStartMusic(e) {
-                    // Don't trigger if clicking the music button itself (handled separately)
                     if (e.target.closest('#music-player')) return;
-
                     if (!isMusicPlaying && !musicStartedByUser) {
-                        console.log('👆 First user click detected — starting music...');
                         playYouTubeMusic();
                     }
-
-                    // Remove this listener after first successful play
                     if (isMusicPlaying) {
                         document.removeEventListener('click', tryStartMusic);
                     }
                 }, { once: false });
 
-                // Also listen for the first click to remove the handler once music plays
                 const checkInterval = setInterval(() => {
-                    if (isMusicPlaying) {
-                        clearInterval(checkInterval);
-                        // The event listener will clean itself up on next click
-                    }
+                    if (isMusicPlaying) clearInterval(checkInterval);
                 }, 500);
-
-                // Stop checking after 60 seconds
                 setTimeout(() => clearInterval(checkInterval), 60000);
             }
 
@@ -1772,8 +1709,7 @@
                 for (let i = 0; i < numHearts; i++) {
                     const heart = document.createElement('span');
                     heart.className = 'explosion-heart';
-                    heart.textContent = explosionHeartEmojis[Math.floor(Math.random() * explosionHeartEmojis
-                        .length)];
+                    heart.textContent = explosionHeartEmojis[Math.floor(Math.random() * explosionHeartEmojis.length)];
                     heart.style.left = originX + 'px';
                     heart.style.top = originY + 'px';
                     heart.style.fontSize = (Math.random() * 28 + 14) + 'px';
@@ -1791,17 +1727,10 @@
                     heart.style.animationDelay = Math.random() * 0.25 + 's';
 
                     explosionContainer.appendChild(heart);
-
-                    setTimeout(() => {
-                        if (heart.parentNode) heart.remove();
-                    }, 2000);
+                    setTimeout(() => { if (heart.parentNode) heart.remove(); }, 2000);
                 }
 
-                // Also try to start music on surprise click if not already playing
-                if (!isMusicPlaying) {
-                    playYouTubeMusic();
-                }
-
+                if (!isMusicPlaying) playYouTubeMusic();
                 setTimeout(() => {
                     surpriseMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 }, 300);
@@ -1811,12 +1740,7 @@
             // INTERSECTION OBSERVER — Scroll Animations
             // ==========================================
             const fadeInSections = document.querySelectorAll('.fade-in-section');
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px 0px -60px 0px',
-                threshold: 0.15,
-            };
-
+            const observerOptions = { root: null, rootMargin: '0px 0px -60px 0px', threshold: 0.15 };
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -1828,10 +1752,7 @@
                     }
                 });
             }, observerOptions);
-
-            fadeInSections.forEach(section => {
-                observer.observe(section);
-            });
+            fadeInSections.forEach(section => observer.observe(section));
 
             // ==========================================
             // KEYBOARD SHORTCUT FOR MUSIC (M key)
@@ -1852,14 +1773,9 @@
             function init() {
                 startFloatingHearts();
                 updateCountdown();
-
-                // Load YouTube API
                 loadYouTubeAPI();
-
-                // Add first-click music trigger (bypasses browser autoplay restrictions)
                 addFirstClickMusicTrigger();
 
-                // If love message section is already visible on load, start typing
                 setTimeout(() => {
                     const loveSection = document.getElementById('love-message');
                     const rect = loveSection.getBoundingClientRect();
@@ -1872,17 +1788,13 @@
                     'font-size:1.4em;color:#e8879b;', 'font-size:1.1em;color:#c9a96e;');
                 console.log('%c✨ This website was made with love just for you. ✨',
                     'font-size:1em;color:#d4a574;font-style:italic;');
-                console.log('%c🎵 Music will auto-play on your first click anywhere on the page.',
-                    'font-size:0.9em;color:#c9a96e;');
             }
 
-            // Run on DOM ready
             if (document.readyState === 'loading') {
                 document.addEventListener('DOMContentLoaded', init);
             } else {
                 init();
             }
-
         })();
     </script>
 </body>
