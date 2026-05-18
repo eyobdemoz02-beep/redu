@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday Redu ❤️</title>
+    <title>Happy Birthday Red ❤️</title>
 
-    <!-- Google Fonts -->
+    <!-- Google Fonts: Playfair Display for elegant headings, Poppins for clean body text -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -77,6 +77,7 @@
             min-height: 100vh;
         }
 
+        /* Custom selection colors */
         ::selection {
             background: var(--pink);
             color: var(--white);
@@ -588,75 +589,78 @@
         }
 
         /* ==========================================
-           REASONS I LOVE YOU SECTION (UPDATED)
+           REASONS I LOVE YOU SECTION
            ========================================== */
         .reasons-section {
             background: var(--white);
         }
         .reasons-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 1.2rem;
-            width: 100%;
-            max-width: 900px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 950px;
             margin: 0 auto;
         }
         .reason-card {
-            background: var(--gradient-card);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 184, 198, 0.25);
-            border-radius: var(--radius-md);
-            padding: 1.8rem 1.5rem;
+            perspective: 800px;
+            height: 220px;
             cursor: pointer;
-            transition: all var(--transition-bounce);
-            text-align: center;
+        }
+        .reason-card-inner {
             position: relative;
-            overflow: hidden;
-            box-shadow: var(--shadow-soft);
-            min-height: 160px;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform-style: preserve-3d;
+        }
+        .reason-card.flipped .reason-card-inner {
+            transform: rotateY(180deg);
+        }
+        .reason-card-front,
+        .reason-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: var(--radius-md);
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 0.6rem;
+            text-align: center;
+            padding: 24px 20px;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid rgba(255, 184, 198, 0.25);
         }
-        .reason-card:hover {
-            transform: translateY(-8px) scale(1.03);
-            box-shadow: 0 20px 50px rgba(255, 77, 109, 0.15);
-            border-color: rgba(255, 184, 198, 0.5);
-            background: linear-gradient(135deg, #fff5f7, #fff0f3, #ffe4e1);
+        .reason-card-front {
+            background: var(--gradient-card);
+            flex-direction: column;
+            gap: 10px;
+            z-index: 2;
         }
-        .reason-card .reason-icon {
-            font-size: 2.5rem;
-            transition: transform var(--transition-bounce);
+        .reason-card-front .reason-icon {
+            font-size: 2.8rem;
+            animation: gentleBounce 2.5s ease-in-out infinite;
         }
-        .reason-card:hover .reason-icon {
-            transform: scale(1.3);
-        }
-        .reason-card .reason-title {
+        .reason-card-front .reason-number {
             font-family: var(--font-heading);
             font-size: 1.1rem;
+            color: var(--gold-deep);
             font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .reason-card-back {
+            background: linear-gradient(135deg, #fff0f3, #ffe4e1, #ffd6dd);
+            transform: rotateY(180deg);
             color: var(--text-dark);
-            transition: color var(--transition-smooth);
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            font-weight: 500;
+            border: 2px solid rgba(201, 169, 110, 0.35);
+            box-shadow: var(--shadow-glow-gold);
         }
-        .reason-card .reason-deep {
-            font-size: 0.85rem;
-            color: var(--text-medium);
-            opacity: 0;
-            max-height: 0;
-            overflow: hidden;
-            transition: all var(--transition-smooth);
-            line-height: 1.5;
-        }
-        .reason-card.revealed .reason-deep {
-            opacity: 1;
-            max-height: 150px;
-            margin-top: 0.5rem;
-        }
-        .reason-card.revealed {
-            border-color: rgba(255, 77, 109, 0.4);
-            box-shadow: 0 12px 40px rgba(255, 77, 109, 0.2);
+        .reason-card:hover .reason-card-inner {
+            transform: rotateY(180deg);
         }
 
         /* ==========================================
@@ -801,7 +805,7 @@
         }
 
         /* ==========================================
-           FINAL SURPRISE SECTION
+           FINAL SURPRISE SECTION (NEW)
            ========================================== */
         .final-section {
             background: var(--white);
@@ -946,6 +950,9 @@
                 grid-template-columns: repeat(2, 1fr);
                 gap: 16px;
             }
+            .reason-card {
+                height: 180px;
+            }
             .countdown-container {
                 gap: 16px;
             }
@@ -983,8 +990,13 @@
                 gap: 10px;
             }
             .reasons-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 10px;
+                grid-template-columns: 1fr;
+                gap: 14px;
+                max-width: 320px;
+                margin: 0 auto;
+            }
+            .reason-card {
+                height: 160px;
             }
             .countdown-container {
                 gap: 10px;
@@ -1026,27 +1038,37 @@
 </head>
 <body>
 
-    <!-- Floating Hearts -->
+    <!-- ==========================================
+    FLOATING HEARTS CONTAINER (Global Background)
+    ========================================== -->
     <div id="floating-hearts-container" aria-hidden="true"></div>
 
-    <!-- YouTube Player (hidden) -->
+    <!-- ==========================================
+    YOUTUBE PLAYER (Hidden - for background music)
+    ========================================== -->
     <div id="youtube-player-container"></div>
 
-    <!-- Screen Dimmer for Final Surprise -->
+    <!-- ==========================================
+    SCREEN DIMMER FOR FINAL SURPRISE
+    ========================================== -->
     <div class="screen-dimmer" id="screenDimmer"></div>
 
-    <!-- Confetti Canvas -->
+    <!-- ==========================================
+    CONFETTI CANVAS
+    ========================================== -->
     <canvas id="confetti-canvas"></canvas>
 
-    <!-- Main Content -->
+    <!-- ==========================================
+    MAIN CONTENT
+    ========================================== -->
     <div class="main-content">
 
-        <!-- HERO SECTION -->
+        <!-- ==================== HERO SECTION ==================== -->
         <section class="hero-section" id="hero">
             <div class="hero-content">
                 <p class="hero-greeting">✨ A Special Day ✨</p>
                 <h1 class="hero-title">
-                    Happy Birthday<br>My Love <span class="gold-accent">Redu</span> ❤️
+                    Happy Birthday<br>My Love <span class="gold-accent">Red</span> ❤️
                 </h1>
                 <p class="hero-subtitle">
                     Every star in the sky shines brighter today because it's the day the most beautiful soul was born.
@@ -1057,7 +1079,7 @@
             </div>
         </section>
 
-        <!-- LOVE MESSAGE SECTION -->
+        <!-- ==================== LOVE MESSAGE SECTION ==================== -->
         <section class="love-message-section fade-in-section" id="love-message">
             <div class="section-inner">
                 <h2 class="section-heading">A Letter For You 💌</h2>
@@ -1070,7 +1092,7 @@
             </div>
         </section>
 
-        <!-- MEMORY GALLERY SECTION -->
+        <!-- ==================== MEMORY GALLERY SECTION ==================== -->
         <section class="gallery-section fade-in-section" id="gallery">
             <div class="section-inner">
                 <h2 class="section-heading">Our Beautiful Memories 📸</h2>
@@ -1099,17 +1121,84 @@
             </div>
         </section>
 
-        <!-- REASONS I LOVE YOU SECTION -->
+        <!-- ==================== REASONS I LOVE YOU SECTION ==================== -->
         <section class="reasons-section fade-in-section" id="reasons">
             <div class="section-inner">
                 <h2 class="section-heading">Reasons I Love You 💖</h2>
-                <p class="section-subheading">Click each card to reveal the deeper reason</p>
+                <p class="section-subheading">Just a few of the infinite reasons</p>
                 <div class="gold-divider"></div>
-                <div class="reasons-grid" id="reasonsGrid"></div>
+                <div class="reasons-grid" id="reasons-grid">
+                    <div class="reason-card" onclick="toggleCard(this)">
+                        <div class="reason-card-inner">
+                            <div class="reason-card-front">
+                                <span class="reason-icon">💫</span>
+                                <span class="reason-number">Your Smile</span>
+                            </div>
+                            <div class="reason-card-back">
+                                It lights up even the darkest rooms. When you smile, the whole world feels warmer.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="reason-card" onclick="toggleCard(this)">
+                        <div class="reason-card-inner">
+                            <div class="reason-card-front">
+                                <span class="reason-icon">🫶</span>
+                                <span class="reason-number">Your Kindness</span>
+                            </div>
+                            <div class="reason-card-back">
+                                You treat everyone with such genuine warmth. It inspires me to be a better person every day.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="reason-card" onclick="toggleCard(this)">
+                        <div class="reason-card-inner">
+                            <div class="reason-card-front">
+                                <span class="reason-icon">🤗</span>
+                                <span class="reason-number">Your Embrace</span>
+                            </div>
+                            <div class="reason-card-back">
+                                In your arms, I've found my safest place. Nothing else in the world matters.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="reason-card" onclick="toggleCard(this)">
+                        <div class="reason-card-inner">
+                            <div class="reason-card-front">
+                                <span class="reason-icon">💭</span>
+                                <span class="reason-number">Your Mind</span>
+                            </div>
+                            <div class="reason-card-back">
+                                The way you think, dream, and see the world — it's beautiful and endlessly fascinating.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="reason-card" onclick="toggleCard(this)">
+                        <div class="reason-card-inner">
+                            <div class="reason-card-front">
+                                <span class="reason-icon">🎵</span>
+                                <span class="reason-number">Your Laugh</span>
+                            </div>
+                            <div class="reason-card-back">
+                                It's my favorite sound. I'd do anything just to hear it every single day.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="reason-card" onclick="toggleCard(this)">
+                        <div class="reason-card-inner">
+                            <div class="reason-card-front">
+                                <span class="reason-icon">💪</span>
+                                <span class="reason-number">Your Strength</span>
+                            </div>
+                            <div class="reason-card-back">
+                                You've overcome so much with grace. Your resilience leaves me in awe.
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- COUNTDOWN / TIMER SECTION -->
+        <!-- ==================== COUNTDOWN / TIMER SECTION ==================== -->
         <section class="countdown-section fade-in-section" id="countdown">
             <div class="section-inner">
                 <h2 class="section-heading">Our Journey Together ⏳</h2>
@@ -1145,7 +1234,7 @@
             </div>
         </section>
 
-        <!-- FINAL SURPRISE SECTION -->
+        <!-- ==================== FINAL SURPRISE SECTION ==================== -->
         <section class="final-section fade-in-section" id="finalSurprise">
             <div class="section-inner">
                 <h2 class="section-heading">One Last Thing… 🎁</h2>
@@ -1153,19 +1242,21 @@
                 <div class="gold-divider"></div>
                 <button class="final-btn" id="finalBtn">💫 One Last Thing…</button>
                 <div class="final-message" id="finalMessage">
-                    I love you more than words<br>can ever explain ❤️
+                    I love you more than words<br>can ever explain ❤️ 
+                    <br>
+                    Happy Birthday, my everything. 🎂💖
                 </div>
             </div>
         </section>
 
-        <!-- FOOTER -->
+        <!-- ==================== FOOTER ==================== -->
         <footer class="footer-section" id="footer">
             <p class="footer-text">Forever Yours <span class="footer-heart">❤️</span></p>
-            <p class="footer-names">Eyob & Redu — A Love Story</p>
+            
         </footer>
     </div>
 
-    <!-- LIGHTBOX OVERLAY -->
+    <!-- ==================== LIGHTBOX OVERLAY ==================== -->
     <div class="lightbox-overlay" id="lightbox-overlay" onclick="closeLightbox()">
         <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close lightbox">✕</button>
         <div class="lightbox-content" id="lightbox-content">
@@ -1173,7 +1264,7 @@
         </div>
     </div>
 
-    <!-- MUSIC PLAYER -->
+    <!-- ==================== MUSIC PLAYER (Floating) ==================== -->
     <div class="music-player" id="music-player" title="Play romantic music">
         <button class="music-player-btn" id="music-btn" onclick="toggleMusic(event)" aria-label="Play/Pause music">
             ▶
@@ -1181,14 +1272,16 @@
         <span class="music-player-label" id="music-label">Play Music</span>
     </div>
 
-    <!-- JAVASCRIPT -->
+    <!-- ==========================================
+    JAVASCRIPT
+    ========================================== -->
     <script>
         (function() {
             // ==========================================
             // CONFIGURATION
             // ==========================================
-            const RELATIONSHIP_START_DATE = "2024-11-29"; // YYYY-MM-DD
-            const HER_NAME = "Redu";
+            const RELATIONSHIP_START_DATE = "2024-11-29"; // YYYY-MM-DD → gives 1 year 5 months 19 days
+            const HER_NAME = "Red";
             const YOUR_NAME = "Eyob";
 
             // YouTube music
@@ -1202,32 +1295,12 @@
         From the moment you came into my life, everything changed. You brought light into my darkest days and warmth into my coldest nights. Your smile is the sunrise that wakes up my soul, and your laugh is the melody that plays in my heart forever.
 
         I never knew love could feel this way — so pure, so deep, so infinite. Every moment with you is a treasure I hold close to my heart.
-
         On your special day, I want you to know how incredibly loved you are. Not just today, but every single day. You deserve all the happiness in the world.
 
         Happy Birthday, my love. Here's to many more birthdays, many more memories, and a lifetime of love.
 
         Forever yours,
         ${YOUR_NAME} ❤️`;
-
-            // Reasons data
-            const reasonsData = [
-                { icon: '💫', title: 'Your Smile',
-                    deep: 'It lights up even the darkest rooms. When you smile, the whole world feels warmer.' },
-                { icon: '🫶', title: 'Your Kindness',
-                    deep: 'You treat everyone with such genuine warmth. It inspires me to be a better person every day.' },
-               
-    
-                { icon: '🤗', title: 'Your Embrace',
-                    deep: 'In your arms, I\'ve found my safest place. Nothing else in the world matters.' },
-                { icon: '💭', title: 'Your Mind',
-                    deep: 'The way you think, dream, and see the world — it\'s beautiful and endlessly fascinating.' },
-                { icon: '🎵', title: 'Your Laugh',
-                    deep: 'It\'s my favorite sound. I\'d do anything just to hear it every single day.' },
-                { icon: '💪', title: 'Your Strength',
-                    deep: 'You\'ve overcome so much with grace. Your resilience leaves me in awe.' },
-                
-            ];
 
             // ==========================================
             // GLOBAL STATE
@@ -1276,6 +1349,7 @@
                         },
                         events: {
                             onReady: function(event) {
+                                console.log('✅ YouTube player ready');
                                 try {
                                     event.target.playVideo();
                                     setTimeout(() => {
@@ -1303,7 +1377,7 @@
                                     updateMusicButtonUI(false);
                                 }
                             },
-                            onError: function() {
+                            onError: function(event) {
                                 setMusicPlayingState(false);
                                 updateMusicButtonUI(false);
                                 document.getElementById('music-label').textContent = 'Error — Try Again';
@@ -1473,25 +1547,7 @@
             }
 
             // ==========================================
-            // BUILD REASONS GRID
-            // ==========================================
-            const reasonsGrid = document.getElementById('reasonsGrid');
-            reasonsData.forEach((reason) => {
-                const card = document.createElement('div');
-                card.className = 'reason-card';
-                card.innerHTML = `
-                    <span class="reason-icon">${reason.icon}</span>
-                    <span class="reason-title">${reason.title}</span>
-                    <span class="reason-deep">${reason.deep}</span>
-                `;
-                card.addEventListener('click', () => {
-                    card.classList.toggle('revealed');
-                });
-                reasonsGrid.appendChild(card);
-            });
-
-            // ==========================================
-            // COUNTDOWN TIMER — accurate calendar math
+            // COUNTDOWN TIMER — 1 year 5 months 19 days
             // ==========================================
             function updateCountdown() {
                 const startDate = new Date(RELATIONSHIP_START_DATE);
@@ -1543,6 +1599,7 @@
                     setTimeout(() => { el.style.transform = 'scale(1)'; }, 150);
                 });
             }
+
             setInterval(updateCountdown, 1000);
             updateCountdown();
 
@@ -1573,6 +1630,15 @@
                     closeLightbox();
                 }
             });
+
+            // ==========================================
+            // REASON CARDS — CLICK TO FLIP (Mobile)
+            // ==========================================
+            window.toggleCard = function(card) {
+                if (window.innerWidth <= 768) {
+                    card.classList.toggle('flipped');
+                }
+            };
 
             // ==========================================
             // MUSIC PLAYER — Toggle Button
@@ -1679,13 +1745,18 @@
             }
 
             finalBtn.addEventListener('click', function() {
+                // Start music if not already playing
                 if (!isMusicPlaying) playYouTubeMusic();
+
                 screenDimmer.classList.add('active');
                 confettiCanvas.classList.add('active');
                 spawnConfetti();
+
                 setTimeout(() => {
                     finalMessage.classList.add('revealed');
                 }, 600);
+
+                // Click dimmer to dismiss
                 screenDimmer.onclick = function() {
                     screenDimmer.classList.remove('active');
                     confettiRunning = false;
