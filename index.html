@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Birthday Redu ❤️</title>
 
-    <!-- Google Fonts: Playfair Display for elegant headings, Poppins for clean body text -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -78,7 +77,6 @@
             min-height: 100vh;
         }
 
-        /* Custom selection colors */
         ::selection {
             background: var(--pink);
             color: var(--white);
@@ -590,78 +588,75 @@
         }
 
         /* ==========================================
-           REASONS I LOVE YOU SECTION
+           REASONS I LOVE YOU SECTION (UPDATED)
            ========================================== */
         .reasons-section {
             background: var(--white);
         }
         .reasons-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            max-width: 950px;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 1.2rem;
+            width: 100%;
+            max-width: 900px;
             margin: 0 auto;
         }
         .reason-card {
-            perspective: 800px;
-            height: 220px;
-            cursor: pointer;
-        }
-        .reason-card-inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            transform-style: preserve-3d;
-        }
-        .reason-card.flipped .reason-card-inner {
-            transform: rotateY(180deg);
-        }
-        .reason-card-front,
-        .reason-card-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
+            background: var(--gradient-card);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 184, 198, 0.25);
             border-radius: var(--radius-md);
+            padding: 1.8rem 1.5rem;
+            cursor: pointer;
+            transition: all var(--transition-bounce);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+            min-height: 160px;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            text-align: center;
-            padding: 24px 20px;
-            box-shadow: var(--shadow-soft);
-            border: 1px solid rgba(255, 184, 198, 0.25);
+            gap: 0.6rem;
         }
-        .reason-card-front {
-            background: var(--gradient-card);
-            flex-direction: column;
-            gap: 10px;
-            z-index: 2;
+        .reason-card:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 20px 50px rgba(255, 77, 109, 0.15);
+            border-color: rgba(255, 184, 198, 0.5);
+            background: linear-gradient(135deg, #fff5f7, #fff0f3, #ffe4e1);
         }
-        .reason-card-front .reason-icon {
-            font-size: 2.8rem;
-            animation: gentleBounce 2.5s ease-in-out infinite;
+        .reason-card .reason-icon {
+            font-size: 2.5rem;
+            transition: transform var(--transition-bounce);
         }
-        .reason-card-front .reason-number {
+        .reason-card:hover .reason-icon {
+            transform: scale(1.3);
+        }
+        .reason-card .reason-title {
             font-family: var(--font-heading);
             font-size: 1.1rem;
-            color: var(--gold-deep);
             font-weight: 600;
-            letter-spacing: 1px;
-        }
-        .reason-card-back {
-            background: linear-gradient(135deg, #fff0f3, #ffe4e1, #ffd6dd);
-            transform: rotateY(180deg);
             color: var(--text-dark);
-            font-family: var(--font-body);
-            font-size: 0.95rem;
-            line-height: 1.6;
-            font-weight: 500;
-            border: 2px solid rgba(201, 169, 110, 0.35);
-            box-shadow: var(--shadow-glow-gold);
+            transition: color var(--transition-smooth);
         }
-        .reason-card:hover .reason-card-inner {
-            transform: rotateY(180deg);
+        .reason-card .reason-deep {
+            font-size: 0.85rem;
+            color: var(--text-medium);
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all var(--transition-smooth);
+            line-height: 1.5;
+        }
+        .reason-card.revealed .reason-deep {
+            opacity: 1;
+            max-height: 150px;
+            margin-top: 0.5rem;
+        }
+        .reason-card.revealed {
+            border-color: rgba(255, 77, 109, 0.4);
+            box-shadow: 0 12px 40px rgba(255, 77, 109, 0.2);
         }
 
         /* ==========================================
@@ -808,13 +803,18 @@
         /* ==========================================
            FINAL SURPRISE SECTION
            ========================================== */
-        .surprise-section {
+        .final-section {
             background: var(--white);
             text-align: center;
             position: relative;
             overflow: visible;
+            min-height: 50vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
-        .surprise-btn {
+        .final-btn {
             display: inline-block;
             padding: 18px 50px;
             font-family: var(--font-body);
@@ -832,53 +832,58 @@
             overflow: visible;
             z-index: 5;
         }
-        .surprise-btn:hover {
+        .final-btn:hover {
             transform: translateY(-3px) scale(1.05);
             box-shadow: 0 14px 44px rgba(184, 147, 90, 0.55), var(--shadow-glow-gold);
         }
-        .surprise-message {
-            display: none;
-            margin-top: 30px;
+        .final-message {
             font-family: var(--font-heading);
-            font-size: clamp(1.2rem, 2.5vw, 1.6rem);
-            color: var(--pink-deep);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
             font-style: italic;
-            animation: fadeInUp 0.8s ease-out forwards;
+            color: var(--pink-deep);
+            text-align: center;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+            pointer-events: none;
+            margin-top: 2rem;
             text-shadow: 0 0 30px rgba(255, 184, 198, 0.5);
-            line-height: 1.6;
+            line-height: 1.4;
         }
-        .surprise-message.visible {
-            display: block;
+        .final-message.revealed {
+            opacity: 1;
+            transform: scale(1);
         }
 
-        /* Heart explosion container */
-        .hearts-explosion {
+        /* Screen dimmer overlay */
+        .screen-dimmer {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 99980;
+            opacity: 0;
             pointer-events: none;
-            z-index: 10001;
+            transition: opacity 0.6s ease;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
         }
-        .explosion-heart {
-            position: absolute;
-            font-size: 20px;
-            animation: heartBurst 1.6s ease-out forwards;
+        .screen-dimmer.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* Confetti canvas */
+        #confetti-canvas {
+            position: fixed;
+            inset: 0;
+            z-index: 99985;
             pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
         }
-        @keyframes heartBurst {
-            0% {
-                transform: translate(0, 0) scale(0.3) rotate(0deg);
-                opacity: 1;
-            }
-            60% {
-                opacity: 0.9;
-            }
-            100% {
-                transform: translate(var(--bx), var(--by)) scale(1.8) rotate(var(--br));
-                opacity: 0;
-            }
+        #confetti-canvas.active {
+            opacity: 1;
         }
 
         /* ==========================================
@@ -941,9 +946,6 @@
                 grid-template-columns: repeat(2, 1fr);
                 gap: 16px;
             }
-            .reason-card {
-                height: 180px;
-            }
             .countdown-container {
                 gap: 16px;
             }
@@ -969,7 +971,7 @@
                 padding: 30px 20px;
             }
             .hero-btn,
-            .surprise-btn {
+            .final-btn {
                 padding: 14px 34px;
                 font-size: 0.95rem;
             }
@@ -981,13 +983,8 @@
                 gap: 10px;
             }
             .reasons-grid {
-                grid-template-columns: 1fr;
-                gap: 14px;
-                max-width: 320px;
-                margin: 0 auto;
-            }
-            .reason-card {
-                height: 160px;
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
             }
             .countdown-container {
                 gap: 10px;
@@ -1029,22 +1026,22 @@
 </head>
 <body>
 
-    <!-- ==========================================
-    FLOATING HEARTS CONTAINER (Global Background)
-    ========================================== -->
+    <!-- Floating Hearts -->
     <div id="floating-hearts-container" aria-hidden="true"></div>
 
-    <!-- ==========================================
-    YOUTUBE PLAYER (Hidden - for background music)
-    ========================================== -->
+    <!-- YouTube Player (hidden) -->
     <div id="youtube-player-container"></div>
 
-    <!-- ==========================================
-    MAIN CONTENT
-    ========================================== -->
+    <!-- Screen Dimmer for Final Surprise -->
+    <div class="screen-dimmer" id="screenDimmer"></div>
+
+    <!-- Confetti Canvas -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- Main Content -->
     <div class="main-content">
 
-        <!-- ==================== HERO SECTION ==================== -->
+        <!-- HERO SECTION -->
         <section class="hero-section" id="hero">
             <div class="hero-content">
                 <p class="hero-greeting">✨ A Special Day ✨</p>
@@ -1060,7 +1057,7 @@
             </div>
         </section>
 
-        <!-- ==================== LOVE MESSAGE SECTION ==================== -->
+        <!-- LOVE MESSAGE SECTION -->
         <section class="love-message-section fade-in-section" id="love-message">
             <div class="section-inner">
                 <h2 class="section-heading">A Letter For You 💌</h2>
@@ -1073,34 +1070,28 @@
             </div>
         </section>
 
-        <!-- ==================== MEMORY GALLERY SECTION ==================== -->
+        <!-- MEMORY GALLERY SECTION -->
         <section class="gallery-section fade-in-section" id="gallery">
             <div class="section-inner">
                 <h2 class="section-heading">Our Beautiful Memories 📸</h2>
                 <p class="section-subheading">Every picture tells our love story</p>
                 <div class="gold-divider"></div>
                 <div class="gallery-grid" id="gallery-grid">
-                    <!-- PHOTO 1 -->
                     <div class="gallery-item" data-src="img/photo_2026-05-18_19-45-13.jpg">
                         <img src="img/photo_2026-05-18_19-45-13.jpg" alt="Memory 1" loading="lazy">
                     </div>
-                    <!-- PHOTO 2 -->
                     <div class="gallery-item" data-src="img/photo_2026-05-18_19-45-15.jpg">
                         <img src="img/photo_2026-05-18_19-45-15.jpg" alt="Memory 2" loading="lazy">
                     </div>
-                    <!-- PHOTO 3 -->
                     <div class="gallery-item" data-src="img/photo_2026-05-18_19-45-20.jpg">
                         <img src="img/photo_2026-05-18_19-45-20.jpg" alt="Memory 3" loading="lazy">
                     </div>
-                    <!-- PHOTO 4 -->
                     <div class="gallery-item" data-src="img/photo_2026-05-18_19-45-21.jpg">
                         <img src="img/photo_2026-05-18_19-45-21.jpg" alt="Memory 4" loading="lazy">
                     </div>
-                    <!-- PHOTO 5 -->
                     <div class="gallery-item" data-src="img/photo_2026-05-18_19-45-31.jpg">
                         <img src="img/photo_2026-05-18_19-45-31.jpg" alt="Memory 5" loading="lazy">
                     </div>
-                    <!-- PHOTO 6 -->
                     <div class="gallery-item" data-src="img/photo_2026-05-18_19-45-29.jpg">
                         <img src="img/photo_2026-05-18_19-45-29.jpg" alt="Memory 6" loading="lazy">
                     </div>
@@ -1108,90 +1099,17 @@
             </div>
         </section>
 
-        <!-- ==================== REASONS I LOVE YOU SECTION ==================== -->
+        <!-- REASONS I LOVE YOU SECTION -->
         <section class="reasons-section fade-in-section" id="reasons">
             <div class="section-inner">
                 <h2 class="section-heading">Reasons I Love You 💖</h2>
-                <p class="section-subheading">Just a few of the infinite reasons</p>
+                <p class="section-subheading">Click each card to reveal the deeper reason</p>
                 <div class="gold-divider"></div>
-                <div class="reasons-grid" id="reasons-grid">
-                    <!-- Reason 1 -->
-                    <div class="reason-card" onclick="toggleCard(this)">
-                        <div class="reason-card-inner">
-                            <div class="reason-card-front">
-                                <span class="reason-icon">🌟</span>
-                                <span class="reason-number">Reason #1</span>
-                            </div>
-                            <div class="reason-card-back">
-                                Your smile lights up my entire world — it's the most beautiful sunrise I've ever known.
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Reason 2 -->
-                    <div class="reason-card" onclick="toggleCard(this)">
-                        <div class="reason-card-inner">
-                            <div class="reason-card-front">
-                                <span class="reason-icon">🎵</span>
-                                <span class="reason-number">Reason #2</span>
-                            </div>
-                            <div class="reason-card-back">
-                                The way you laugh makes my heart skip a beat — it's my favorite melody in the universe.
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Reason 3 -->
-                    <div class="reason-card" onclick="toggleCard(this)">
-                        <div class="reason-card-inner">
-                            <div class="reason-card-front">
-                                <span class="reason-icon">🕊️</span>
-                                <span class="reason-number">Reason #3</span>
-                            </div>
-                            <div class="reason-card-back">
-                                Your kindness shows me what true beauty is — it radiates from within and touches everyone.
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Reason 4 -->
-                    <div class="reason-card" onclick="toggleCard(this)">
-                        <div class="reason-card-inner">
-                            <div class="reason-card-front">
-                                <span class="reason-icon">✨</span>
-                                <span class="reason-number">Reason #4</span>
-                            </div>
-                            <div class="reason-card-back">
-                                You make even the most ordinary moments feel magical — every second with you is a treasure.
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Reason 5 -->
-                    <div class="reason-card" onclick="toggleCard(this)">
-                        <div class="reason-card-inner">
-                            <div class="reason-card-front">
-                                <span class="reason-icon">🌙</span>
-                                <span class="reason-number">Reason #5</span>
-                            </div>
-                            <div class="reason-card-back">
-                                Your strength inspires me to be better every day — you are the most incredible person I know.
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Reason 6 -->
-                    <div class="reason-card" onclick="toggleCard(this)">
-                        <div class="reason-card-inner">
-                            <div class="reason-card-front">
-                                <span class="reason-icon">💫</span>
-                                <span class="reason-number">Reason #6</span>
-                            </div>
-                            <div class="reason-card-back">
-                                Loving you is the easiest and most beautiful thing I've ever done — it feels like coming home.
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <div class="reasons-grid" id="reasonsGrid"></div>
             </div>
         </section>
 
-        <!-- ==================== COUNTDOWN / TIMER SECTION ==================== -->
+        <!-- COUNTDOWN / TIMER SECTION -->
         <section class="countdown-section fade-in-section" id="countdown">
             <div class="section-inner">
                 <h2 class="section-heading">Our Journey Together ⏳</h2>
@@ -1227,34 +1145,27 @@
             </div>
         </section>
 
-        <!-- ==================== FINAL SURPRISE SECTION ==================== -->
-        <section class="surprise-section fade-in-section" id="surprise">
+        <!-- FINAL SURPRISE SECTION -->
+        <section class="final-section fade-in-section" id="finalSurprise">
             <div class="section-inner">
-                <h2 class="section-heading">One Last Thing... 🎁</h2>
-                <p class="section-subheading">Are you ready?</p>
+                <h2 class="section-heading">One Last Thing… 🎁</h2>
+                <p class="section-subheading">Are you ready for this?</p>
                 <div class="gold-divider"></div>
-                <button class="surprise-btn" id="surprise-btn" onclick="triggerSurprise()">
-                    💝 Click for Surprise 💝
-                </button>
-                <p class="surprise-message" id="surprise-message">
-                    My dearest <strong>Redu</strong>,<br><br>
-                    I just want you to know that you are the most precious gift life has ever given me.<br>
-                    On your birthday, I wish you all the joy, love, and happiness you bring into my life — multiplied by infinity.<br><br>
-                    <strong>I love you more than words could ever say.</strong><br>
-                    Happy Birthday, my everything. 🎂💖<br><br>
-                    — <em>Forever yours, Eyob</em>
-                </p>
+                <button class="final-btn" id="finalBtn">💫 One Last Thing…</button>
+                <div class="final-message" id="finalMessage">
+                    I love you more than words<br>can ever explain ❤️
+                </div>
             </div>
         </section>
 
-        <!-- ==================== FOOTER ==================== -->
+        <!-- FOOTER -->
         <footer class="footer-section" id="footer">
             <p class="footer-text">Forever Yours <span class="footer-heart">❤️</span></p>
             <p class="footer-names">Eyob & Redu — A Love Story</p>
         </footer>
     </div>
 
-    <!-- ==================== LIGHTBOX OVERLAY ==================== -->
+    <!-- LIGHTBOX OVERLAY -->
     <div class="lightbox-overlay" id="lightbox-overlay" onclick="closeLightbox()">
         <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close lightbox">✕</button>
         <div class="lightbox-content" id="lightbox-content">
@@ -1262,10 +1173,7 @@
         </div>
     </div>
 
-    <!-- ==================== HEARTS EXPLOSION CONTAINER ==================== -->
-    <div class="hearts-explosion" id="hearts-explosion" aria-hidden="true"></div>
-
-    <!-- ==================== MUSIC PLAYER (Floating) ==================== -->
+    <!-- MUSIC PLAYER -->
     <div class="music-player" id="music-player" title="Play romantic music">
         <button class="music-player-btn" id="music-btn" onclick="toggleMusic(event)" aria-label="Play/Pause music">
             ▶
@@ -1273,44 +1181,53 @@
         <span class="music-player-label" id="music-label">Play Music</span>
     </div>
 
-
-    <!-- ==========================================
-    JAVASCRIPT
-    ========================================== -->
+    <!-- JAVASCRIPT -->
     <script>
         (function() {
             // ==========================================
-            // CONFIGURATION — Your real relationship start date
+            // CONFIGURATION
             // ==========================================
-            // Set the exact day your journey began (YYYY-MM-DD)
-            const RELATIONSHIP_START_DATE = "2024-11-29";
-
-            // Your names
+            const RELATIONSHIP_START_DATE = "2024-11-29"; // YYYY-MM-DD
             const HER_NAME = "Redu";
             const YOUR_NAME = "Eyob";
 
-            // ==========================================
-            // 🎵 YOUTUBE MUSIC CONFIGURATION
-            // ==========================================
-            const YOUTUBE_VIDEO_ID = "1RQxncw1Yfc";      // Your chosen song
-            const YOUTUBE_PLAYLIST_ID = "RD1RQxncw1Yfc"; // Radio playlist for continuous music
+            // YouTube music
+            const YOUTUBE_VIDEO_ID = "1RQxncw1Yfc";
+            const YOUTUBE_PLAYLIST_ID = "RD1RQxncw1Yfc";
 
-            // Typing speed (milliseconds per character)
             const TYPING_SPEED_MS = 45;
 
-            // The love message that will be typed out
             const LOVE_MESSAGE = `My dearest ${HER_NAME},
 
         From the moment you came into my life, everything changed. You brought light into my darkest days and warmth into my coldest nights. Your smile is the sunrise that wakes up my soul, and your laugh is the melody that plays in my heart forever.
 
-        I never knew love could feel this way — so pure, so deep, so infinite. Every moment with you is a treasure I hold close to my heart. You are not just my girlfriend; you are my best friend, my safe place, my home.
+        I never knew love could feel this way — so pure, so deep, so infinite. Every moment with you is a treasure I hold close to my heart.
 
-        On your special day, I want you to know how incredibly loved you are. Not just today, but every single day. You deserve all the happiness in the world, and I promise to spend my life trying to give it to you.
+        On your special day, I want you to know how incredibly loved you are. Not just today, but every single day. You deserve all the happiness in the world.
 
         Happy Birthday, my love. Here's to many more birthdays, many more memories, and a lifetime of love.
 
         Forever yours,
         ${YOUR_NAME} ❤️`;
+
+            // Reasons data
+            const reasonsData = [
+                { icon: '💫', title: 'Your Smile',
+                    deep: 'It lights up even the darkest rooms. When you smile, the whole world feels warmer.' },
+                { icon: '🫶', title: 'Your Kindness',
+                    deep: 'You treat everyone with such genuine warmth. It inspires me to be a better person every day.' },
+               
+    
+                { icon: '🤗', title: 'Your Embrace',
+                    deep: 'In your arms, I\'ve found my safest place. Nothing else in the world matters.' },
+                { icon: '💭', title: 'Your Mind',
+                    deep: 'The way you think, dream, and see the world — it\'s beautiful and endlessly fascinating.' },
+                { icon: '🎵', title: 'Your Laugh',
+                    deep: 'It\'s my favorite sound. I\'d do anything just to hear it every single day.' },
+                { icon: '💪', title: 'Your Strength',
+                    deep: 'You\'ve overcome so much with grace. Your resilience leaves me in awe.' },
+                
+            ];
 
             // ==========================================
             // GLOBAL STATE
@@ -1359,7 +1276,6 @@
                         },
                         events: {
                             onReady: function(event) {
-                                console.log('✅ YouTube player ready');
                                 try {
                                     event.target.playVideo();
                                     setTimeout(() => {
@@ -1387,7 +1303,7 @@
                                     updateMusicButtonUI(false);
                                 }
                             },
-                            onError: function(event) {
+                            onError: function() {
                                 setMusicPlayingState(false);
                                 updateMusicButtonUI(false);
                                 document.getElementById('music-label').textContent = 'Error — Try Again';
@@ -1481,9 +1397,7 @@
                 heart.style.animationName = Math.random() > 0.5 ? 'floatUp' : 'floatUpAlt';
                 heart.style.animationDelay = '0s';
                 heartsContainer.appendChild(heart);
-                setTimeout(() => {
-                    if (heart.parentNode) heart.remove();
-                }, duration * 1000 + 500);
+                setTimeout(() => { if (heart.parentNode) heart.remove(); }, duration * 1000 + 500);
             }
 
             function startFloatingHearts() {
@@ -1559,7 +1473,25 @@
             }
 
             // ==========================================
-            // COUNTDOWN TIMER (Time Together) — ACCURATE CALENDAR MATH
+            // BUILD REASONS GRID
+            // ==========================================
+            const reasonsGrid = document.getElementById('reasonsGrid');
+            reasonsData.forEach((reason) => {
+                const card = document.createElement('div');
+                card.className = 'reason-card';
+                card.innerHTML = `
+                    <span class="reason-icon">${reason.icon}</span>
+                    <span class="reason-title">${reason.title}</span>
+                    <span class="reason-deep">${reason.deep}</span>
+                `;
+                card.addEventListener('click', () => {
+                    card.classList.toggle('revealed');
+                });
+                reasonsGrid.appendChild(card);
+            });
+
+            // ==========================================
+            // COUNTDOWN TIMER — accurate calendar math
             // ==========================================
             function updateCountdown() {
                 const startDate = new Date(RELATIONSHIP_START_DATE);
@@ -1611,12 +1543,11 @@
                     setTimeout(() => { el.style.transform = 'scale(1)'; }, 150);
                 });
             }
-
             setInterval(updateCountdown, 1000);
             updateCountdown();
 
             // ==========================================
-            // LIGHTBOX — SHOWS HER REAL PHOTO
+            // LIGHTBOX
             // ==========================================
             const lightboxOverlay = document.getElementById('lightbox-overlay');
             const lightboxImg = document.getElementById('lightbox-img');
@@ -1642,15 +1573,6 @@
                     closeLightbox();
                 }
             });
-
-            // ==========================================
-            // REASON CARDS — CLICK TO FLIP (Mobile)
-            // ==========================================
-            window.toggleCard = function(card) {
-                if (window.innerWidth <= 768) {
-                    card.classList.toggle('flipped');
-                }
-            };
 
             // ==========================================
             // MUSIC PLAYER — Toggle Button
@@ -1689,52 +1611,87 @@
             }
 
             // ==========================================
-            // HEART EXPLOSION (Surprise Button)
+            // FINAL SURPRISE — Dimmer + Confetti + Message
             // ==========================================
-            window.triggerSurprise = function() {
-                const surpriseMessage = document.getElementById('surprise-message');
-                const surpriseBtn = document.getElementById('surprise-btn');
-                const explosionContainer = document.getElementById('hearts-explosion');
+            const finalBtn = document.getElementById('finalBtn');
+            const finalMessage = document.getElementById('finalMessage');
+            const screenDimmer = document.getElementById('screenDimmer');
+            const confettiCanvas = document.getElementById('confetti-canvas');
+            const ctx = confettiCanvas.getContext('2d');
+            let confettiParticles = [];
+            let confettiRunning = false;
 
-                surpriseMessage.classList.add('visible');
-                surpriseBtn.style.display = 'none';
+            function resizeConfettiCanvas() {
+                confettiCanvas.width = window.innerWidth;
+                confettiCanvas.height = window.innerHeight;
+            }
+            window.addEventListener('resize', resizeConfettiCanvas);
+            resizeConfettiCanvas();
 
-                const btnRect = surpriseBtn.getBoundingClientRect();
-                const originX = btnRect.left + btnRect.width / 2;
-                const originY = btnRect.top + btnRect.height / 2;
-
-                const explosionHeartEmojis = ['❤️', '💖', '💕', '💝', '💗', '💓', '💞', '🩷', '✨', '💛', '🌟', '♥'];
-                const numHearts = 55;
-
-                for (let i = 0; i < numHearts; i++) {
-                    const heart = document.createElement('span');
-                    heart.className = 'explosion-heart';
-                    heart.textContent = explosionHeartEmojis[Math.floor(Math.random() * explosionHeartEmojis.length)];
-                    heart.style.left = originX + 'px';
-                    heart.style.top = originY + 'px';
-                    heart.style.fontSize = (Math.random() * 28 + 14) + 'px';
-
-                    const angle = Math.random() * Math.PI * 2;
-                    const distance = Math.random() * 350 + 100;
-                    const bx = Math.cos(angle) * distance;
-                    const by = Math.sin(angle) * distance - Math.random() * 200;
-                    const br = Math.random() * 720 - 360;
-
-                    heart.style.setProperty('--bx', bx + 'px');
-                    heart.style.setProperty('--by', by + 'px');
-                    heart.style.setProperty('--br', br + 'deg');
-                    heart.style.animationDuration = (Math.random() * 1.2 + 1.2) + 's';
-                    heart.style.animationDelay = Math.random() * 0.25 + 's';
-
-                    explosionContainer.appendChild(heart);
-                    setTimeout(() => { if (heart.parentNode) heart.remove(); }, 2000);
+            function spawnConfetti() {
+                const colors = ['#ff4d6d', '#ff758f', '#ffb8c6', '#d4a574', '#e8d5b7', '#fff0f3', '#ffda79', '#ff6b8a'];
+                for (let i = 0; i < 180; i++) {
+                    confettiParticles.push({
+                        x: Math.random() * confettiCanvas.width,
+                        y: -20 - Math.random() * 200,
+                        w: Math.random() * 10 + 4,
+                        h: Math.random() * 6 + 3,
+                        color: colors[Math.floor(Math.random() * colors.length)],
+                        vx: (Math.random() - 0.5) * 6,
+                        vy: Math.random() * 4 + 2,
+                        rotation: Math.random() * 360,
+                        rotSpeed: (Math.random() - 0.5) * 10,
+                        life: Math.random() * 0.6 + 0.4,
+                    });
                 }
+                if (!confettiRunning) {
+                    confettiRunning = true;
+                    animateConfetti();
+                }
+            }
 
+            function animateConfetti() {
+                if (!confettiRunning && confettiParticles.length === 0) {
+                    return;
+                }
+                ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+                confettiParticles = confettiParticles.filter(p => p.life > 0.01);
+                confettiParticles.forEach(p => {
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    p.vy += 0.04;
+                    p.rotation += p.rotSpeed;
+                    p.life -= 0.003;
+                    ctx.save();
+                    ctx.globalAlpha = Math.min(1, p.life);
+                    ctx.translate(p.x, p.y);
+                    ctx.rotate((p.rotation * Math.PI) / 180);
+                    ctx.fillStyle = p.color;
+                    ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+                    ctx.restore();
+                });
+                if (confettiParticles.length > 0) {
+                    requestAnimationFrame(animateConfetti);
+                } else {
+                    confettiRunning = false;
+                    confettiCanvas.classList.remove('active');
+                }
+            }
+
+            finalBtn.addEventListener('click', function() {
                 if (!isMusicPlaying) playYouTubeMusic();
+                screenDimmer.classList.add('active');
+                confettiCanvas.classList.add('active');
+                spawnConfetti();
                 setTimeout(() => {
-                    surpriseMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }, 300);
-            };
+                    finalMessage.classList.add('revealed');
+                }, 600);
+                screenDimmer.onclick = function() {
+                    screenDimmer.classList.remove('active');
+                    confettiRunning = false;
+                    confettiCanvas.classList.remove('active');
+                };
+            });
 
             // ==========================================
             // INTERSECTION OBSERVER — Scroll Animations
@@ -1755,7 +1712,7 @@
             fadeInSections.forEach(section => observer.observe(section));
 
             // ==========================================
-            // KEYBOARD SHORTCUT FOR MUSIC (M key)
+            // KEYBOARD SHORTCUTS
             // ==========================================
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'm' || e.key === 'M') {
